@@ -28,13 +28,14 @@ If you prefer open an specified IDE can you use the -a parameter:
 idea -a IDE_NAME
 ```
 
-Values
+### Values
 
-|| Ide to open   || IDE_NAME value ||
+| IDE to open   | IDE_NAME value |
+|---------------|----------------|
 | IntelliJ Idea | intellij       |
-| Webstorm | webstorm       |
-| PhpStorm | phpstorm       |
-| RubyMine | rubymine       |
+| Webstorm      | webstorm       |
+| PhpStorm      | phpstorm       |
+| RubyMine      | rubymine       |
 
 
 ## Contributing
