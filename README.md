@@ -30,13 +30,13 @@ idea -a IDE_NAME
 
 ### Values
 
-| IDE to open   | IDE_NAME value |
-|---------------|----------------|
-| IntelliJ Idea | intellij       |
-| Webstorm      | webstorm       |
-| PhpStorm      | phpstorm       |
-| RubyMine      | rubymine       |
-
+| IDE to open     | IDE_NAME value   |
+| --------------- | ---------------- |
+| IntelliJ Idea   | intellij         |
+| Webstorm        | webstorm         |
+| PhpStorm        | phpstorm         |
+| RubyMine        | rubymine         |
+| AndroidStudio   | android          |
 
 ## Contributing
 

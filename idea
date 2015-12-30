@@ -22,6 +22,10 @@ function getRubyMineApp() {
   ls -1d /Applications/RubyMine* | tail -n1
 }
 
+function getAndroidStudioApp() {
+  ls -1d /Applications/Android\ Studio* | tail -n1
+}
+
 function calcApplication() {
   if [ -f "${PROJECT_PATH}/pom.xml" ]; then
     APP=$(getIntelliJApp)
@@ -29,6 +33,10 @@ function calcApplication() {
   fi
   if [ -f "${PROJECT_PATH}/Gemfile" ]; then
     APP=$(getRubyMineApp)
+    return 0
+  fi
+  if [ -f "${PROJECT_PATH}/app/src/main/AndroidManifest.xml" ]; then
+    APP=$(getAndroidStudioApp)
     return 0
   fi
 }
@@ -45,6 +53,8 @@ function getApplication() {
       APP=$(getPhpStromApp)
     elif [[ $APP_NAME == *uby* ]]; then
       APP=$(getRubyMineApp)
+    elif [[ $APP_NAME == *android* ]]; then
+      APP=$(getAndroidStudioApp)
     fi
   fi
 
