@@ -1,0 +1,65 @@
+#! /usr/bin/env bash
+
+set -eu
+
+PROJECT_PATH=`pwd`
+APP_NAME=
+APP=
+
+function getIntelliJApp() {
+  ls -1d /Applications/IntelliJ\ * | tail -n1
+}
+
+function getWebstormApp() {
+  ls -1d /Applications/WebStorm* | tail -n1
+}
+
+function getPhpStormApp() {
+  ls -1d /Applications/PhpStorm* | tail -n1
+}
+
+function getRubyMineApp() {
+  ls -1d /Applications/RubyMine* | tail -n1
+}
+
+function calcApplication() {
+  if [ -f "${PROJECT_PATH}/pom.xml" ]; then
+    APP=$(getIntelliJApp)
+    return 0
+  fi
+  if [ -f "${PROJECT_PATH}/Gemfile" ]; then
+    APP=$(getRubyMineApp)
+    return 0
+  fi
+}
+
+function getApplication() {
+  if [ -z "$APP_NAME" ]; then
+    calcApplication
+  else
+    if [[ $APP_NAME == *ntelli* ]]; then
+      APP=$(getIntelliJApp)
+    elif [[ $APP_NAME == *ebstorm* ]]; then
+      APP=$(getWebstormApp)
+    elif [[ $APP_NAME == *hpstorm* ]]; then
+      APP=$(getPhpStromApp)
+    elif [[ $APP_NAME == *uby* ]]; then
+      APP=$(getRubyMineApp)
+    fi
+  fi
+
+  if [ -z "$APP" ]; then
+    APP=$(getIntelliJApp)
+  fi
+}
+
+while getopts a: opts; do
+  case ${opts} in
+    a) APP_NAME=${OPTARG} ;;
+  esac
+done
+
+getApplication
+echo "Openning $APP..."
+open -a "$APP" .
+
