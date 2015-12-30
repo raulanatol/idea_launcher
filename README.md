@@ -16,21 +16,26 @@ sudo make uninstall
 
 ## Usage
 
-### IntelliJ Idea
-
 In your project directory:
 
 ```shell
 idea
 ```
 
-### Webstorm
-
-In your webstorm project directory:
+If you prefer open an specified IDE can you use the -a parameter:
 
 ```shell
-webstorm
+idea -a IDE_NAME
 ```
+
+Values
+
+|| Ide to open   || IDE_NAME value ||
+| IntelliJ Idea | intellij       |
+| Webstorm | webstorm       |
+| PhpStorm | phpstorm       |
+| RubyMine | rubymine       |
+
 
 ## Contributing
 
