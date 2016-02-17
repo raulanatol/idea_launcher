@@ -37,6 +37,15 @@ idea -a IDE_NAME
 | PhpStorm        | phpstorm         |
 | RubyMine        | rubymine         |
 | AndroidStudio   | android          |
+| PyCharm         | pycharm          |
+
+### Example 
+
+To run Webstorm
+
+```shell
+idea -a webstorm
+```
 
 ## Contributing
 
