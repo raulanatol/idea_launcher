@@ -26,6 +26,10 @@ function getAndroidStudioApp() {
   ls -1d /Applications/Android\ Studio* | tail -n1
 }
 
+function getPyCharmApp() {
+    ls -1d /Applications/PyCharm* | tail -n1
+}
+
 function calcApplication() {
   if [ -f "${PROJECT_PATH}/pom.xml" ]; then
     APP=$(getIntelliJApp)
@@ -41,6 +45,10 @@ function calcApplication() {
   fi
   if [ -f "${PROJECT_PATH}/package.json" ]; then
     APP=$(getWebstormApp)
+    return 0
+  fi
+  if [ -f "${PROJECT_PATH}/requirements.txt" ]; then
+    APP=$(getPyCharmApp)
     return 0
   fi
 }
@@ -59,6 +67,8 @@ function getApplication() {
       APP=$(getRubyMineApp)
     elif [[ $APP_NAME == *android* ]]; then
       APP=$(getAndroidStudioApp)
+    elif [[ $APP_NAME == *pycharm* ]]; then
+      APP=$(getPyCharmApp)
     fi
   fi
 
@@ -74,6 +84,6 @@ while getopts a: opts; do
 done
 
 getApplication
-echo "Openning $APP..."
+echo "Open $APP..."
 open -a "$APP" .
 
