@@ -51,6 +51,20 @@ function calcApplication() {
     APP=$(getPyCharmApp)
     return 0
   fi
+
+  IML_FILE=`find . -name "*.iml" | tail -n1`
+
+  IML_MODULE=`sed -n 's/JAVA_MODULE/&/p' ${IML_FILE}`
+  if [ ${#IML_MODULE} -gt 0 ]; then
+    APP=$(getIntelliJApp)
+    return 0
+  fi
+
+  IML_MODULE=`sed -n 's/WEB_MODULE/&/p' ${IML_FILE}`
+  if [ ${#IML_MODULE} -gt 0 ]; then
+    APP=$(getWebstormApp)
+    return 0
+  fi
 }
 
 function getApplication() {
