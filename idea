@@ -43,6 +43,9 @@ function calcApplication() {
     APP=$(getAndroidStudioApp)
     return 0
   fi
+  if [ -f "${PROJECT_PATH}/settings.gradle" ]; then
+    APP=$(getAndroidStudioApp)
+    return 0
   if [ -f "${PROJECT_PATH}/package.json" ]; then
     APP=$(getWebstormApp)
     return 0
