@@ -59,6 +59,10 @@ function calcApplication() {
     APP=$(getPhpStormApp)
     return 0
   fi
+  if [ -f "${PROJECT_PATH}/index.php" ]; then
+    APP=$(getPhpStormApp)
+    return 0
+  fi
 
   IML_FILE=`find . -name "*.iml" | tail -n1`
 
