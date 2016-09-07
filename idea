@@ -113,7 +113,7 @@ function verifyIdeaFolder() {
     return 0
   fi
 
-  read -p "${PROJECT_PATH} is not a idea folder. Sure to open? Y/N: "
+  read -p "${PROJECT_PATH} is not an idea folder. Sure to open? Y/N: "
   case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
     y|yes) return 0 ;;
     *) return -1
