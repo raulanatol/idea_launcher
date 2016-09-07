@@ -46,6 +46,7 @@ function calcApplication() {
   if [ -f "${PROJECT_PATH}/settings.gradle" ]; then
     APP=$(getAndroidStudioApp)
     return 0
+  fi
   if [ -f "${PROJECT_PATH}/package.json" ]; then
     APP=$(getWebstormApp)
     return 0
@@ -68,17 +69,18 @@ function calcApplication() {
   fi
 
   IML_FILE=`find . -name "*.iml" | tail -n1`
+  if [ -f "${IML_FILE}" ]; then
+    IML_MODULE=`sed -n 's/JAVA_MODULE/&/p' ${IML_FILE}`
+    if [ ${#IML_MODULE} -gt 0 ]; then
+      APP=$(getIntelliJApp)
+      return 0
+    fi
 
-  IML_MODULE=`sed -n 's/JAVA_MODULE/&/p' ${IML_FILE}`
-  if [ ${#IML_MODULE} -gt 0 ]; then
-    APP=$(getIntelliJApp)
-    return 0
-  fi
-
-  IML_MODULE=`sed -n 's/WEB_MODULE/&/p' ${IML_FILE}`
-  if [ ${#IML_MODULE} -gt 0 ]; then
-    APP=$(getWebstormApp)
-    return 0
+    IML_MODULE=`sed -n 's/WEB_MODULE/&/p' ${IML_FILE}`
+    if [ ${#IML_MODULE} -gt 0 ]; then
+      APP=$(getWebstormApp)
+      return 0
+    fi
   fi
 }
 
@@ -106,12 +108,25 @@ function getApplication() {
   fi
 }
 
+function verifyIdeaFolder() {
+  if [ -d "${PROJECT_PATH}/.idea" ]; then
+    return 0
+  fi
+
+  read -p "${PROJECT_PATH} is not a idea folder. Sure to open? Y/N: "
+  case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
+    y|yes) return 0 ;;
+    *) return -1
+  esac
+}
+
 while getopts a: opts; do
   case ${opts} in
     a) APP_NAME=${OPTARG} ;;
   esac
 done
 
+verifyIdeaFolder
 getApplication
 echo "Open $APP..."
 open -a "$APP" .

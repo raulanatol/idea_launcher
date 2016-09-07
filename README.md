@@ -39,7 +39,7 @@ idea -a IDE_NAME
 | AndroidStudio   | android          |
 | PyCharm         | pycharm          |
 
-### Example 
+### Example
 
 To run Webstorm
 
@@ -54,6 +54,10 @@ idea -a webstorm
 3. Commit your changes (`git commit -am 'Added a sweet feature'`)
 4. Push to the branch (`git push origin my_feature_branch`)
 5. Create new Pull Request
+
+## Based on...
+
+https://gist.github.com/chrisdarroch/7018927
 
 ## TODO
 
