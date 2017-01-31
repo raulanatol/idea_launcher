@@ -76,6 +76,12 @@ function calcApplication() {
       return 0
     fi
 
+    IML_MODULE=`sed -n 's/PHP Runtime/&/p' ${IML_FILE}`
+    if [ ${#IML_MODULE} -gt 0 ]; then
+      APP=$(getPhpStormApp)
+      return 0
+    fi
+
     IML_MODULE=`sed -n 's/WEB_MODULE/&/p' ${IML_FILE}`
     if [ ${#IML_MODULE} -gt 0 ]; then
       APP=$(getWebstormApp)
@@ -93,7 +99,7 @@ function getApplication() {
     elif [[ $APP_NAME == *ebstorm* ]]; then
       APP=$(getWebstormApp)
     elif [[ $APP_NAME == *hpstorm* ]]; then
-      APP=$(getPhpStromApp)
+      APP=$(getPhpStormApp)
     elif [[ $APP_NAME == *uby* ]]; then
       APP=$(getRubyMineApp)
     elif [[ $APP_NAME == *android* ]]; then
