@@ -87,6 +87,12 @@ function calcApplication() {
       APP=$(getWebstormApp)
       return 0
     fi
+
+    IML_MODULE=`sed -n 's/PYTHON_MODULE/&/p' ${IML_FILE}`
+    if [ ${#IML_MODULE} -gt 0 ]; then
+      APP=$(getPyCharmApp)
+      return 0
+    fi
   fi
 }
 
