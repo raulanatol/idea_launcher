@@ -5,13 +5,7 @@ It will open your idea project from your terminal.
 ## Install
 
 ```shell
-sudo make install
-```
-
-## Uninstall
-
-```shell
-sudo make uninstall
+npm install -g idea_launcher
 ```
 
 ## Usage
@@ -55,11 +49,7 @@ idea -a webstorm
 4. Push to the branch (`git push origin my_feature_branch`)
 5. Create new Pull Request
 
-## Based on...
-
-https://gist.github.com/chrisdarroch/7018927
-
 ## TODO
 
-- More types of projects
-- Windows, Unix adaptation
+- More sources matching
+- Windows, Unix compatibility
