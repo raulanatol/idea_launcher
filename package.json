@@ -1,0 +1,38 @@
+{
+  "name": "idea_launcher",
+  "version": "1.0.0",
+  "description": "It will open your idea project from your terminal.",
+  "main": "index.js",
+  "scripts": {
+    "patch-release": "npm version patch && npm publish && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulanatol/idea_launcher.git"
+  },
+  "keywords": [
+    "Intellij",
+    "JetBrains",
+    "Webstorm",
+    "terminal",
+    "bash"
+  ],
+  "author": "raulanatol <raul@natol.es>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raulanatol/idea_launcher/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "bin": {
+    "idea": "index.js"
+  },
+  "homepage": "https://github.com/raulanatol/idea_launcher#readme",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "commander": "^2.12.2",
+    "prompt-sync": "^4.1.5",
+    "readdir": "0.0.13"
+  }
+}
