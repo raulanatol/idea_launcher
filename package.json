@@ -23,7 +23,7 @@
     "index.js"
   ],
   "bin": {
-    "idea": "index.js"
+    "oidea": "index.js"
   },
   "homepage": "https://github.com/raulanatol/idea_launcher#readme",
   "dependencies": {

@@ -13,29 +13,29 @@ program
   .version(version)
   .usage('[options]')
   .option('-a, --app <app>', 'Application name')
-  .option('-u, --update', 'Update the installed applications')
+  .option('-u, --update', 'Update the installed applications paths')
   .option('-d, --default <application>', 'Change the default application')
   .parse(process.argv);
 
+let loader;
+switch (process.platform) {
+  case 'darwin':
+    loader = require('./loaders/darwin.js');
+    break;
+  case 'win32':
+    loader = require('./loaders/win32.js');
+    break;
+  default:
+    loader = require('./loaders/default.js');
+}
+
 if (program.update) {
-  console.error(chalk.red('Not implemented yet'));
+  loader.updateConfig();
 } else if (program.app) {
   console.error(chalk.red('Not implemented yet'), program.app);
 } else if (program.default) {
   console.error(chalk.red('Not implemented yet'), program.default);
 } else {
-  let loader;
-  switch (process.platform) {
-    case 'darwin':
-      loader = require('./loaders/darwin.js');
-      break;
-    case 'win32':
-      loader = require('./loaders/win32.js');
-      break;
-    default:
-      loader = require('./loaders/default.js');
-  }
-
   loader.loadUserConfig();
 
   const ideaFilename = path.join(currentPath, '.idea');

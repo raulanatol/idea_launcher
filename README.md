@@ -13,13 +13,13 @@ npm install -g idea_launcher
 In your project directory:
 
 ```shell
-idea
+oidea
 ```
 
 If you prefer open an specified IDE can you use the -a parameter:
 
 ```shell
-idea -a IDE_NAME
+oidea -a IDE_NAME
 ```
 
 ### Values
@@ -38,8 +38,13 @@ idea -a IDE_NAME
 To run Webstorm
 
 ```shell
-idea -a webstorm
+oidea -a webstorm
 ```
+
+## Other commands
+
+| -u | Update the installed applications paths |
+| -d | Update the default application |
 
 ## Contributing
 

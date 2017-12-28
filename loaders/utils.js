@@ -3,15 +3,6 @@ const path = require("path");
 const os = require("os");
 const readDir = require('readdir');
 
-function initUserConfig(folder, filepath) {
-  const initialConfig = {
-    intellijApp: 'intellij',
-    webstormApp: 'webstorm'
-  };
-  fs.mkdirSync(folder);
-  fs.writeFileSync(filepath, JSON.stringify(initialConfig), 'utf-8');
-}
-
 module.exports = {
   APPS: {
     INTELLIJ: 0,
@@ -20,11 +11,30 @@ module.exports = {
     PY_CHARM: 3,
   },
 
-  getUserConfig() {
+  fileExists(filepath) {
+    return fs.existsSync(filepath);
+  },
+
+  initUserConfig(folder, filepath, defaultConfig) {
+    if (!fs.existsSync(folder)) {
+      fs.mkdirSync(folder);
+    }
+    fs.writeFileSync(filepath, JSON.stringify(defaultConfig), 'utf-8');
+    return defaultConfig;
+  },
+
+  refreshUserConfig(config) {
+    const folder = path.join(os.homedir(), '.idea_launcher');
+    const configFile = path.join(folder, 'config.json');
+    this.initUserConfig(folder, configFile, config);
+  },
+
+  getUserConfig(calculateDefaultConfig) {
     const folder = path.join(os.homedir(), '.idea_launcher');
     const configFile = path.join(folder, 'config.json');
     if (!fs.existsSync(configFile)) {
-      return initUserConfig(folder, configFile);
+      const defaultConfig = calculateDefaultConfig();
+      return this.initUserConfig(folder, configFile, defaultConfig);
     } else {
       return JSON.parse(fs.readFileSync(configFile, 'utf-8'));
     }

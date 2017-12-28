@@ -2,6 +2,43 @@ const chalk = require('chalk');
 const Utils = require("./utils");
 const execSync = require("child_process").execSync;
 
+function searchWebstorm() {
+  if (Utils.fileExists('/usr/local/bin/webstorm')) {
+    return '/usr/local/bin/webstorm';
+  }
+  return null;
+}
+
+function searchIntellij() {
+  if (Utils.fileExists('/usr/local/bin/idea')) {
+    return '/usr/local/bin/idea';
+  }
+  return null;
+}
+
+function searchPhpStorm() {
+  if (Utils.fileExists('/usr/local/bin/pstorm')) {
+    return '/usr/local/bin/pstorm';
+  }
+  return null;
+}
+
+function searchRubyMine() {
+  if (Utils.fileExists('/usr/local/bin/mine')) {
+    return '/usr/local/bin/mine';
+  }
+  return null;
+}
+
+function calculateDefaultConfig() {
+  return {
+    intellijApp: searchIntellij(),
+    webstormApp: searchWebstorm(),
+    phpstormApp: searchPhpStorm(),
+    rubymineApp: searchRubyMine()
+  };
+}
+
 module.exports = {
   configuration: null,
 
@@ -25,8 +62,12 @@ module.exports = {
     }
   },
 
+  updateConfig() {
+    Utils.refreshUserConfig(calculateDefaultConfig());
+  },
+
   loadUserConfig() {
-    this.configuration = Utils.getUserConfig();
+    this.configuration = Utils.getUserConfig(calculateDefaultConfig);
   },
 
   openApplicationByIdeaFile(ideaFilename) {
