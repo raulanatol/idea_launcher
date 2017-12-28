@@ -7,11 +7,20 @@ APP_NAME=
 APP=
 
 function getIntelliJApp() {
-  ls -1d /Applications/IntelliJ\ * | tail -n1
+  RESULT = ls -1d /Applications/IntelliJ\ * | tail -n1
+  if [ -f "${RESULT}" ]; then
+    RESULT = ls -1d ~/Applications/JetBrains*/IntelliJ\ * | tail -n1
+  fi
+  RESULT
 }
 
 function getWebstormApp() {
   ls -1d /Applications/WebStorm* | tail -n1
+  RESULT = ls -1d /Applications/IntelliJ\ * | tail -n1
+  if [ -f "${RESULT}" ]; then
+    RESULT = ls -1d ~/Applications/JetBrains*/Webstorm\ * | tail -n1
+  fi
+  RESULT
 }
 
 function getPhpStormApp() {
@@ -142,4 +151,3 @@ verifyIdeaFolder
 getApplication
 echo "Open $APP..."
 open -a "$APP" .
-
