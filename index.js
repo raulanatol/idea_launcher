@@ -11,14 +11,18 @@ const currentPath = process.cwd();
 
 program
   .version(version)
-  .option('-a', '--app', 'Application name')
-  .option('-u', '--update', 'Update the installed applications')
+  .usage('[options]')
+  .option('-a, --app <app>', 'Application name')
+  .option('-u, --update', 'Update the installed applications')
+  .option('-d, --default <application>', 'Change the default application')
   .parse(process.argv);
 
 if (program.update) {
   console.error(chalk.red('Not implemented yet'));
 } else if (program.app) {
-  console.error(chalk.red('Not implemented yet'));
+  console.error(chalk.red('Not implemented yet'), program.app);
+} else if (program.default) {
+  console.error(chalk.red('Not implemented yet'), program.default);
 } else {
   let loader;
   switch (process.platform) {
