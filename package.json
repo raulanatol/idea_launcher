@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "It will open your idea project from your terminal.",
   "main": "index.js",
-  "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raulanatol/idea_launcher.git"
