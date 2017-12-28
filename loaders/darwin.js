@@ -40,8 +40,11 @@ module.exports = {
   },
 
   openIntelliJApp() {
-    const toOpen = this.configuration.intellijApp;
-    execSync(toOpen);
+    if (this.configuration.intellijApp) {
+      execSync(this.configuration.intellijApp + ' .');
+    } else {
+      console.error(chalk.red('Not implemented yet'));
+    }
   },
 
   openWebstormApp() {

@@ -47,6 +47,34 @@ module.exports = {
       return this.APPS.RUBY_MINE;
     }
 
+    if (fs.existsSync(path.join(projectFolder, 'app', 'src', 'main', 'AndroidManifest.xml'))) {
+      return this.APPS.ANDROID_STUDIO;
+    }
+
+    if (fs.existsSync(path.join(projectFolder, 'settings.gradle'))) {
+      return this.APPS.ANDROID_STUDIO;
+    }
+
+    if (fs.existsSync(path.join(projectFolder, 'package.json'))) {
+      return this.APPS.WEBSTORM;
+    }
+
+    if (fs.existsSync(path.join(projectFolder, 'requirements.txt'))) {
+      return this.APPS.PY_CHARM;
+    }
+
+    if (fs.existsSync(path.join(projectFolder, 'wp-login.php'))) {
+      return this.APPS.PHP_STORM;
+    }
+
+    if (fs.existsSync(path.join(projectFolder, 'composer.json'))) {
+      return this.APPS.PHP_STORM;
+    }
+
+    if (fs.existsSync(path.join(projectFolder, 'index.php'))) {
+      return this.APPS.PHP_STORM;
+    }
+
     console.warn('Run using default application - Using sources');
     return this.APPS.INTELLIJ;
   },
